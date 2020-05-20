@@ -1,0 +1,4 @@
+export enum ActionTypes {
+  RESPOND_TEXT = "RESPOND_TEXT",
+  CREATE_ADMIN_MESSAGE = "CREATE_ADMIN_MESSAGE"
+}

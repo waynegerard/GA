@@ -7,6 +7,9 @@ your Discord server.
 ## What happened to the voice features?
 In order to get voice working, you'll need a provider to perform transcription. Since this is an advanced detail and can hamstring beginners who just want to get a custom Discord bot working, we've removed voice features. 
 
+## How do I make the quote/at feature?
+You'll have to set up databases in order to store the information used in quote/at. We wanted to make this project as accessible as possible, so this base template does not require you set up databases.
+
 ## Can I install this without Docker?
 You could, but we don't recommend it. You'll have to install all the various node packages and there can be existing
 things that get in the way. Docker is nice because it's basically a blank canvas with just the things you need to work 

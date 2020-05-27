@@ -1,0 +1,12 @@
+version: '3'
+services:
+  client:
+    image: ga:latest
+    build: Client
+    command: yarn run watch
+    env_file:
+      - .env
+      - Client/.env
+    restart: unless-stopped
+    volumes:
+      - ./Client:/app

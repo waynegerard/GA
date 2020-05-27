@@ -1,8 +1,8 @@
 import MusicPlayer from './fun/music'
-import FortniteDropLocation from './fortnite/dropLocation'
+import exampleSkill from './example/exampleSkill'
 import BaseSkill from './baseSkill'
 
-const skillList: any[] = [FortniteDropLocation,  MusicPlayer]
+const skillList: any[] = [exampleSkill,  MusicPlayer]
 
 const skillInstances = () => skillList.map((skill: any): BaseSkill => new (<any>skill)())
 

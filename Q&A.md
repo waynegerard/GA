@@ -4,6 +4,9 @@ make a new app and generate a token for it. In order to add GA to your Discord s
 server. Also a pro tip: keep your token a secret! Don't add it publicly anywhere because then anyone can add things to 
 your Discord server. 
 
+## What happened to the voice features?
+In order to get voice working, you'll need a provider to perform transcription. Since this is an advanced detail and can hamstring beginners who just want to get a custom Discord bot working, we've removed voice features. 
+
 ## Can I install this without Docker?
 You could, but we don't recommend it. You'll have to install all the various node packages and there can be existing
 things that get in the way. Docker is nice because it's basically a blank canvas with just the things you need to work 

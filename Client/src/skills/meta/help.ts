@@ -14,18 +14,11 @@ export default class Help extends BaseSkill {
 
   helpMessage(): string {
     const serverInviteLink = "https://discord.gg/fkPyYce"
-    const botInviteLink = "<http://bit.ly/ga-discord-bot>"
+    const repoLink = "https://github.com/Midgame/GA"
 
     /* eslint-disable  max-len */
-    const msg = `GA is a digital party host that makes gaming and hanging out with friends more fun. 
-    
-It lets you play music, ask icebreaker questions, save funny moments, and play hilarious audio clips with text + voice commands.
-
-Full command list: **ga help commands**
-Send us feedback: **ga feedback** [your feedback]
-
-Official GA Discord: ${serverInviteLink}
-Invite the bot to your own server: ${botInviteLink}
+    const msg = `GA is an open source Discord bot that is templated for your customization. Join the community at 
+    ${serverInviteLink}. Find the source code at ${repoLink}.
     `
     return msg
   }

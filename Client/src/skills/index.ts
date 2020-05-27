@@ -1,12 +1,8 @@
 import MusicPlayer from './fun/music'
-import RandomNoInput from './fun/randomNoInput'
 import FortniteDropLocation from './fortnite/dropLocation'
 import BaseSkill from './baseSkill'
-import JoinVoice from './meta/join'
-import LeaveVoice from './meta/leave'
 
-const skillList: any[] = [FortniteDropLocation, OverwatchHeroPicker, MusicPlayer,
-  RandomNoInput, JoinVoice, LeaveVoice]
+const skillList: any[] = [FortniteDropLocation,  MusicPlayer]
 
 const skillInstances = () => skillList.map((skill: any): BaseSkill => new (<any>skill)())
 

@@ -1,5 +1,5 @@
 ## What is my Discord token?
-If you don't already have a Discord Developer account, log in through [here][http://discordapp.com/developers/]. Then
+If you don't already have a Discord Developer account, log in through [here](http://discordapp.com/developers/). Then
 make a new app and generate a token for it. In order to add GA to your Discord server, you must be the admin of the
 server. Also a pro tip: keep your token a secret! Don't add it publicly anywhere because then anyone can add things to 
 your Discord server. 

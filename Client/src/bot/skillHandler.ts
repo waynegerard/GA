@@ -3,7 +3,6 @@ import logger from '../util/logger'
 import SkillMessage from '../models/skillMessage'
 import SkillList from '../skills'
 import SkillInterface from '../skills/skillInterface'
-import SkillService from '../services/skills'
 import Help from '../skills/meta/help'
 import Admin from './admin'
 import Voice from './voice'
@@ -68,14 +67,6 @@ export default class SkillHandler {
       skillMessage.Command = command
       return true
     })
-
-    if (!skillHandler) { // No local handler found, try a remote skill handler
-      const actions: ActionInterface[] = await SkillService.request(skillMessage)
-      if (actions) {
-        await ActionProcessor.processActions(actions, skillMessage.createActionData())
-      }
-      return
-    }
 
     // Logging
     logData.skill = skillMessage.command

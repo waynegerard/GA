@@ -1,6 +1,5 @@
 import { Readable } from 'stream'
 import Discord from '../bot/discord'
-import logger from '../util/logger'
 import Voice from '../bot/voice'
 import {
  JoinVoiceAction, LeaveVoiceAction, ActionData, ActionProcessor,
@@ -26,6 +25,11 @@ class SkillMessage {
     this.channel = channel
     this.author = author
     this.voiceHandler = voiceHandler
+  }
+
+  async createMessage(msg: string): Promise<void> {
+      const textChannel = this.channel as Discord.TextChannel
+      textChannel.createMessage(msg)
   }
 
   toString(): string {

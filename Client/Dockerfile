@@ -7,9 +7,6 @@ WORKDIR /app
 
 COPY package.json /app/package.json
 
-RUN if [ "$NODE_ENV" = "development" ]; \
-	then yarn install;  \
-	else yarn install --only=production; \
-	fi
+RUN yarn install
 
 COPY . /app

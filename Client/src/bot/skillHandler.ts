@@ -1,5 +1,4 @@
 import Discord from './discord'
-import analytics from '../util/analytics'
 import logger from '../util/logger'
 import SkillMessage from '../models/skillMessage'
 import SkillList from '../skills'
@@ -83,7 +82,6 @@ export default class SkillHandler {
     logData.arguments = skillMessage.arguments
     logData.matchedSkill = skillHandler.skillName
     logger.info("Sending query to skillHandler", { skill: skillHandler.skillName, message: contents })
-    this.trackInvocation(skillHandler.skillName, channel.guild, author)
 
     // Log to admin channel
     const admin = Admin.getInstance()
@@ -96,7 +94,6 @@ export default class SkillHandler {
     } catch (e) {
       logger.error(e)
       logData.error = e.toString()
-      this.trackError(skillHandler.skillName, channel.guild, author, e.toString())
       admin.sendMessage("monitoring", "Errors", logData)
       skillMessage.createMessage(`Uh oh, something went wrong! 
       Let us know what happened by sending us feedback via '!ga feedback'`)
@@ -107,41 +104,4 @@ export default class SkillHandler {
     logger.info("Tracking skill result", logData)
   }
 
-  trackInvocation(skill: string, guild: Discord.DiscordGuild, author: Discord.User) {
-    analytics.track({
-      userId: author.id,
-      event: 'Skill Invoked',
-      properties: {
-        guildId: guild.id,
-        skillName: skill,
-      },
-    })
-
-    analytics.track({
-      userId: author.id,
-      event: skill,
-      properties: {
-        guildId: guild.id,
-      },
-    })
-
-    analytics.identify({
-      userId: author.id,
-      traits: {
-        name: author.username,
-      },
-    })
-  }
-
-  trackError(skill: string, guild: Discord.DiscordGuild, author: Discord.User, errorMessage: string) {
-    analytics.track({
-      event: "Skill Error",
-      userId: author.id,
-      properties: {
-        guildId: guild.id,
-        skillName: skill,
-        error: errorMessage,
-      },
-    })
-  }
 }

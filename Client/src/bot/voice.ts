@@ -3,7 +3,6 @@ import https from 'https'
 import EventEmitter from 'events'
 import Discord from './discord'
 import logger from '../util/logger'
-import Transcriber from './transcriber'
 
 enum AUDIO_STATE {
   NOT_PLAYING = 0,
@@ -24,8 +23,6 @@ export default class Voice extends EventEmitter {
 
   private currentAudioState: AUDIO_STATE = AUDIO_STATE.NOT_PLAYING
 
-  private transcriber?: Transcriber
-
   private setupEventHandlers(): Promise<any> {
     this.voiceConnection.on('end', () => {
       logger.info("[VOICE] Stream closing, processing next file...")
@@ -37,10 +34,6 @@ export default class Voice extends EventEmitter {
       logger.error(`[VOICE]: Error message: ${e.message}`)
     })
 
-    this.transcriber = new Transcriber(this.voiceConnection, this.voiceChannel)
-    this.transcriber.on('voiceCommand', (data: any) => {
-      this.emit('voiceCommand', data)
-    })
 
     return new Promise((resolve) => {
       if (this.voiceConnection.ready) {

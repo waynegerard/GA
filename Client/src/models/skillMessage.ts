@@ -1,6 +1,5 @@
 import { Readable } from 'stream'
 import Discord from '../bot/discord'
-import Google from '../services/google'
 import logger from '../util/logger'
 import Voice from '../bot/voice'
 import {
@@ -27,20 +26,6 @@ class SkillMessage {
     this.channel = channel
     this.author = author
     this.voiceHandler = voiceHandler
-  }
-
-  async createMessage(msg: string): Promise<void> {
-    // If it's a voice channel, say it over voice
-    if (this.channel.type === Discord.GuildChannelType.VOICE) {
-      const url = await Google.speak(msg)
-      logger.info(`Playing URL: ${url}`)
-
-      this.voiceHandler.addShortAudioURL(url)
-    } else {
-      // Otherwise it's a text channel
-      const textChannel = this.channel as Discord.TextChannel
-      textChannel.createMessage(msg)
-    }
   }
 
   toString(): string {

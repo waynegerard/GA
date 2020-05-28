@@ -9,17 +9,6 @@ const winstonTransports: any = [
   new transports.File({ filename: 'logs/combined.log' }),
 ]
 
-if (process.env.NODE_ENV !== 'test') {
-  const cwTransport = new WinstonCloudWatch({
-    logGroupName: 'io',
-    logStreamName: Constants.AWS_LOG_STREAM,
-    awsAccessKeyId: Constants.AWS_LOG_ACCESS_KEY_ID,
-    awsSecretKey: Constants.AWS_LOG_SECRET_KEY,
-    awsRegion: "us-east-1",
-    jsonMessage: true,
-  })
-  winstonTransports.push(cwTransport)
-}
 
 const logger = createLogger({
   level: logLevel,
@@ -34,14 +23,5 @@ const logger = createLogger({
   transports: winstonTransports,
 });
 
-// Also write to the console in development
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new transports.Console({
-    format: format.combine(
-      format.colorize(),
-      format.simple(),
-    ),
-  }))
-}
 
 export default logger

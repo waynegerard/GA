@@ -6,7 +6,6 @@ services:
     command: yarn run watch
     env_file:
       - .env
-      - Client/.env
     restart: unless-stopped
     volumes:
       - ./Client:/app

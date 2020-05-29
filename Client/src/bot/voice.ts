@@ -6,14 +6,11 @@ import logger from '../util/logger'
 
 enum AUDIO_STATE {
   NOT_PLAYING = 0,
-  PLAYING_LONG_AUDIO,
-  PLAYING_SHORT_AUDIO
+  PLAYING_LONG_AUDIO
 }
 
 export default class Voice extends EventEmitter {
   private longAudioQueue: Readable[] = []
-
-  private shortAudioQueue: Readable[] = []
 
   public voiceChannel?: Discord.VoiceChannel
 
@@ -48,15 +45,9 @@ export default class Voice extends EventEmitter {
     })
   }
 
-  /**
-   * Playing long audio, short audio in queue: Play short audio, resume playing long audio after
-   * Playing long audio, long audio in queue: Continue playing long audio
-   * Playing short audio, short audio in queue: Interrupt short audio with new short audio
-   * Playing short audio: long audio in queue: Resume playing long audio after
-   */
   private processAudio() {
     logger.info("[VOICE] Processing audio...")
-    if (!this.longAudioQueue.length && !this.shortAudioQueue.length) { // Nothing to play
+    if (!this.longAudioQueue.length) { // Nothing to play
       logger.info("[VOICE] Nothing to play")
       this.currentAudioState = AUDIO_STATE.NOT_PLAYING
       return
@@ -64,25 +55,12 @@ export default class Voice extends EventEmitter {
 
     if (this.currentAudioState === AUDIO_STATE.NOT_PLAYING) {
       let next: Readable
-      if (this.shortAudioQueue.length > 0) {
-        logger.info("[VOICE] Playing short audio")
-        next = this.shortAudioQueue.shift()
-        this.currentAudioState = AUDIO_STATE.PLAYING_SHORT_AUDIO
-      } else {
-        logger.info("[VOICE] Playing long audio")
-        next = this.longAudioQueue.shift()
-        next.resume()
-        this.currentAudioState = AUDIO_STATE.PLAYING_LONG_AUDIO
-      }
+      logger.info("[VOICE] Playing long audio")
+      next = this.longAudioQueue.shift()
+      next.resume()
+      this.currentAudioState = AUDIO_STATE.PLAYING_LONG_AUDIO
       this.playStream(next)
       return
-    }
-
-    // Interrupt if we have something in the short audio queue
-    if (this.shortAudioQueue.length) {
-      logger.info("[VOICE] Interrupting long audio with clip audio")
-      this.currentAudioState = AUDIO_STATE.NOT_PLAYING
-      this.voiceConnection.stopPlaying()
     }
   }
 
@@ -132,19 +110,8 @@ export default class Voice extends EventEmitter {
     this.processAudio()
   }
 
-  async addShortAudioURL(url: string): Promise<void> {
-    const stream = await this.convertToStream(url)
-    this.shortAudioQueue.push(stream)
-    this.processAudio()
-  }
-
   addLongAudioStream(stream: Readable): void {
     this.longAudioQueue.push(stream)
-    this.processAudio()
-  }
-
-  addShortAudioStream(stream: Readable): void {
-    this.shortAudioQueue.push(stream)
     this.processAudio()
   }
 

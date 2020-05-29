@@ -19,7 +19,7 @@ export default class Bot {
     this.client.on('ready', () => {
       logger.info('Bot connected')
       this.client.editStatus("online", {
-        name: '!ga help | midgame.gg',
+        name: '!ga help',
         type: 3,
       })
       // Setup the admin client

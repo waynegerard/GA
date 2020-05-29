@@ -1,8 +1,10 @@
 import MusicPlayer from './fun/music'
 import exampleSkill from './example/exampleSkill'
 import BaseSkill from './baseSkill'
+import JoinVoice from './meta/join'
+import LeaveVoice from './meta/leave'
 
-const skillList: any[] = [exampleSkill,  MusicPlayer]
+const skillList: any[] = [exampleSkill,  MusicPlayer, JoinVoice, LeaveVoice]
 
 const skillInstances = () => skillList.map((skill: any): BaseSkill => new (<any>skill)())
 

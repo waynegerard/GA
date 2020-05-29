@@ -17,9 +17,9 @@ export default class Help extends BaseSkill {
     const repoLink = "https://github.com/Midgame/GA"
 
     /* eslint-disable  max-len */
-    const msg = `GA is an open source Discord bot that is templated for your customization. Join the community at 
-    ${serverInviteLink}. Find the source code at ${repoLink}.
-    `
+    const msg = `GA is an open source Discord bot that is templated for your customization. 
+    Join the community at ${serverInviteLink}. 
+    Find the source code at ${repoLink}.`
     return msg
   }
 

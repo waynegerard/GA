@@ -16,10 +16,12 @@ DISCORD_TOKEN=<A discord token of your choice>
 ```
 Then run the following command from the project root directory on your CLI:
 ```
-docker-compose run app yarn install
 docker-compose build
 docker-compose up -d
+docker-compose run app yarn install
 ```
+
+If something doesn't work, you can check the logs at `docker-compose logs -f`
 
 ## Wait I need more help! 
 Check out the Q&A.md file for more information!

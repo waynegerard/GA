@@ -33,3 +33,6 @@ the root project directory, enter `vim .env`. This will open up the vim editor w
 to use "insert" mode, which allows you to type in your `PORT` and `DISCORD_TOKEN` values. When you're done, press `esc`
 and then `:wq`. This writes and quits the vim editor. You can view your file outside of the vim editor using `cat .env`.
 To make changes, you can call `vim .env` again and since the file already exists, it will open your previous work. 
+
+## What is eslint?
+Eslint is a syntax checker and optional enforcer for Javascript. If you get an error about no eslint configuration file, you can either remove linting (not recommended if you plan on actively developing) or run `docker-compose run app yarn eslint --init`. You may need to install by running `docker-compose run app yarn install eslint`. 

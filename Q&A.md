@@ -35,4 +35,4 @@ and then `:wq`. This writes and quits the vim editor. You can view your file out
 To make changes, you can call `vim .env` again and since the file already exists, it will open your previous work. 
 
 ## What is eslint?
-Eslint is a syntax checker and optional enforcer for Javascript. If you get an error about no eslint configuration file, you can either remove linting (not recommended if you plan on actively developing) or run `docker-compose run app yarn eslint --init`. You may need to install by running `docker-compose run app yarn install eslint`. 
+Eslint is a syntax checker and optional enforcer for Javascript. If you get an error about no eslint configuration file, you can either remove linting (not recommended if you plan on actively developing) or run `docker-compose run app yarn eslint --init`. You may need to install by running `docker-compose run app yarn install eslint`. If you want to move fast, when you are configuring your eslint file, you can choose the option "To check syntax only". Afterwards, restart your docker container by running `docker-compose restart`.

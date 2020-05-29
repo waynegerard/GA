@@ -3,7 +3,7 @@ import Discord from '../bot/discord'
 import Voice from '../bot/voice'
 import {
  JoinVoiceAction, LeaveVoiceAction, ActionData, ActionProcessor,
- StopVoiceAction, SkipVoiceAction, AddLongAudioAction, AddShortAudioAction,
+ StopVoiceAction, SkipVoiceAction, AddLongAudioAction,
 } from '../actions'
 
 class SkillMessage {
@@ -66,11 +66,6 @@ class SkillMessage {
   skipVoice(): void {
     const actionData = this.createActionData()
     ActionProcessor.processActions([new SkipVoiceAction()], actionData)
-  }
-
-  async joinAndPlayShortAudioURL(url: string): Promise<void> {
-    const actionData = this.createActionData()
-    await ActionProcessor.processActions([new JoinVoiceAction(), new AddShortAudioAction(url)], actionData)
   }
 
   async joinAndPlayLongAudio(stream: Readable): Promise<void> {

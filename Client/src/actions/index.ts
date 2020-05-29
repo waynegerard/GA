@@ -8,7 +8,6 @@ import RespondTextAction from './respondText'
 import StopVoiceAction from './stopVoice'
 import SkipVoiceAction from './skipVoice'
 import AddLongAudioAction from './addLongAudio'
-import AddShortAudioAction from './addShortAudio'
 
 const ActionDataToAction = (actionData: any): ActionInterface => {
   let action: ActionInterface
@@ -30,6 +29,6 @@ const ActionDataToAction = (actionData: any): ActionInterface => {
 
 export {
  ActionInterface, ActionData, ActionProcessor, JoinVoiceAction, LeaveVoiceAction,
- StopVoiceAction, SkipVoiceAction, AddLongAudioAction, AddShortAudioAction,
+ StopVoiceAction, SkipVoiceAction, AddLongAudioAction,
  ActionDataToAction,
 }

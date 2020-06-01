@@ -93,7 +93,6 @@ export default class Voice extends EventEmitter {
   }
 
   stop() {
-    this.shortAudioQueue = []
     this.longAudioQueue = []
     this.voiceConnection.stopPlaying()
     this.currentAudioState = AUDIO_STATE.NOT_PLAYING

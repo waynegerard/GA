@@ -125,8 +125,10 @@ Resources:
     Properties:
       ImageId: ami-02ccb28830b645a41
       InstanceType: t2.micro
-      SecurityGroupIds:
-        - Ref: DeveloperSG
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: True
+          GroupSet:
+            - Ref: DeveloperSG
       KeyName:
         Ref: KeyPair
       UserData:

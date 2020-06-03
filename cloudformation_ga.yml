@@ -135,7 +135,7 @@ Resources:
         - AssociatePublicIpAddress: True
           DeviceIndex: 0
           SubnetId:
-            - Ref: DeveloperSubnet
+            Ref: DeveloperSubnet
           GroupSet:
             - Ref: DeveloperSG
       KeyName:

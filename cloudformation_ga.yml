@@ -17,6 +17,12 @@ Resources:
       EnableDnsSupport: 'false'
       EnableDnsHostnames: 'false'
       InstanceTenancy: dedicated
+  DeveloperSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        - Ref: DeveloperVPC
+      CidrBlock: 10.0.0.0/16
   DeveloperSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -127,6 +133,9 @@ Resources:
       InstanceType: t2.micro
       NetworkInterfaces:
         - AssociatePublicIpAddress: True
+          DeviceIndex: 0
+          SubnetId:
+            - Ref: DeveloperSubnet
           GroupSet:
             - Ref: DeveloperSG
       KeyName:

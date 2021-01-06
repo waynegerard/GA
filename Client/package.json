@@ -23,7 +23,7 @@
         "@types/express": "^4.17.1",
         "@types/node": "^12.7.11",
         "analytics-node": "^3.4.0-beta.1",
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "cheerio": "^1.0.0-rc.3",
         "cyclic-32": "^1.1.0",
         "dialogflow": "^1.2.0",

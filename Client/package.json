@@ -28,7 +28,7 @@
         "cyclic-32": "^1.1.0",
         "dialogflow": "^1.2.0",
         "eris": "^0.11.2",
-        "express": "~4.17.1",
+        "express": "~4.17.3",
         "express-http-to-https": "^1.1.4",
         "js-sha1": "^0.6.0",
         "pg": "^7.18.2",
